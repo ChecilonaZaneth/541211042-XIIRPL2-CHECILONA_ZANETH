@@ -1,0 +1,25 @@
+{
+  "name": "express_basic",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u00005\u00004\u00001\u00002\u00001\u00001\u00000\u00004\u00002\u0000-\u0000X\u0000I\u0000I\u0000R\u0000P\u0000L\u00002\u0000-\u0000C\u0000H\u0000E\u0000C\u0000I\u0000L\u0000O\u0000N\u0000A\u0000_\u0000Z\u0000A\u0000N\u0000E\u0000T\u0000H\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChecilonaZaneth/541211042-XIIRPL2-CHECILONA_ZANETH.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChecilonaZaneth/541211042-XIIRPL2-CHECILONA_ZANETH/issues"
+  },
+  "homepage": "https://github.com/ChecilonaZaneth/541211042-XIIRPL2-CHECILONA_ZANETH#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1"
+  }
+}
