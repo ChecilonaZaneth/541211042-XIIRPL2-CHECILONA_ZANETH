@@ -1,6 +1,7 @@
 const User = require('../models/User')
 
 module.exports = {
+  // get all users
     index: async (req, res) => { //index untuk menampilkan data
        try {
         const users = await User.find()
@@ -22,6 +23,22 @@ module.exports = {
        }
         
       },
+      // get a user
+      show: async (req, res) => {
+        try {
+          const user = await User.findById(req.params.id)
+          res.json({
+            status: true,
+            data: user,
+            method: req.method,
+            url: req.url,
+            mesage: "Data berhasil didapat"
+          })
+          
+        } catch (error) {
+          res.status(400).json({succes: false})
+        }
+      },  
       store: async (req, res) => { //untuk post data / menyimpan
         try {
           const user = await User.create(req.body)
@@ -36,34 +53,37 @@ module.exports = {
           res.status(400).json({succes: false})
         }
       },
-      update: (req, res) => {
-        const id = req.params.id //mengirimkan parameter
-        users.filter(user => { 
-          if(user.id == id){ //wadah untuk menampung value dari params.id
-            user.nama = req.body.nama //req.body.nama digunakan sebagai menginput data
-            user.email = req.body.email
-            return user
-          }
-        })
-        res.json({
-          status: true,
-          data: users,
-          method: req.method,
-          url: req.url,
-          mesage: "Data berhasil diubah"
-        })
+      update: async (req, res) => {
+        try {
+          const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,
+            runValidators: true
+          })
+          res.json({
+            status: true,
+            data: user,
+            method: req.method,
+            url: req.url,
+            mesage: "Data berhasil diubah"
+          })
+          
+        } catch (error) {
+          res.status(400).json({succes: false})
+        }
+        
       },
-      delete: (req, res) => {
-        const id = req.params.id 
-        users = users.filter(user => user.id != id) //bernilai tidak sama dengan bernilai true
-    
-        res.json({ //sebagai respon
-          status: true,
-          data: users,
-          method: req.method,
-          url: req.url,
-          message: "Data berhasil dihapus"
-        })
+      delete: async (req, res) => {
+        try {
+          await User.findByIdAndDelete(req.params.id)
+          res.json({ //sebagai respon
+            status: true,
+            method: req.method,
+            url: req.url,
+            message: "Data berhasil dihapus"
+          })
+        } catch (error) {
+          res.status(400).json({succes: false})
+        }
       }
 }
 //mvc module, view, controller | model berhubungan dengan databe untuk mereprensentasikan database
